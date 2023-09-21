@@ -42,7 +42,7 @@ const Example = () => {
     };
 
     const onChangeLanguage = (lang: 'fr' | 'en') => {
-        i18next.changeLanguage(lang).then(r => console.log(r));
+        i18next.changeLanguage(lang);
     };
 
     return (

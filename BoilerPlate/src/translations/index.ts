@@ -23,6 +23,6 @@ i18n.use(initReactI18next).init({
         escapeValue: false, // not needed for react as it escapes by default
     },
     compatibilityJSON: 'v3',
-});
+}).then(r => r);
 
 export default i18n;

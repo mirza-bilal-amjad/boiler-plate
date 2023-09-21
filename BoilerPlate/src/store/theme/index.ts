@@ -5,7 +5,7 @@ const slice = createSlice({
     name: 'theme',
     initialState: {theme: 'default', darkMode: null} as ThemeState,
     reducers: {
-        changeTheme: state => {
+        changeTheme: (state, {payload: {theme, darkMode}}: ThemePayload) => {
             if (typeof theme !== 'undefined') {
                 state.theme = theme;
             }

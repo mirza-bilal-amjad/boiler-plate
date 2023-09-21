@@ -19,8 +19,6 @@ const Brand = ({ height, width, mode }: Props) => {
         source={Images.logo}
         resizeMode={mode}
       />
-
-
     </View>
   );
 };
