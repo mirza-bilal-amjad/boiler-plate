@@ -18,12 +18,15 @@ export const Colors = {
     textGray800: '#000000',
     textGray400: '#4D4D4D',
     textGray200: '#A1A1A1',
-    primary: '#E14032',
-    success: '#28a745',
-    error: '#dc3545',
+    primaryInActive: '#A4B8D3',
+    primary: '#004FB4',
+    bookedText: '#4F6C92',
+    success: '#16A64D',
+    error: '#E2006A',
     //ComponentColors
     circleButtonBackground: '#E1E1EF',
     circleButtonColor: '#44427D',
+
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {

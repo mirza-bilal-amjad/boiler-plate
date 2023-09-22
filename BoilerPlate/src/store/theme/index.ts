@@ -25,7 +25,6 @@ const slice = createSlice({
         },
     },
 });
-
 export const {changeTheme, setDefaultTheme} = slice.actions;
 
 export default slice.reducer;
