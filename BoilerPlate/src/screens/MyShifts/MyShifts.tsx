@@ -12,8 +12,7 @@ const MyShifts = () => {
     const [sectionShifts, setSectionShifts] = useState<any>([])
     const dispatch = useDispatch();
     const {Colors, FontSize, NavigationTheme} = useTheme();
-    const {colors}: any = NavigationTheme;
-    console.log(Colors)
+
     const myShifts = useSelector((state: any) => state.myShiftsReducer)
     const formatDate = (date: any) => {
         const today = new Date();
