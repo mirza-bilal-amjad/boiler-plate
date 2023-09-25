@@ -13,10 +13,9 @@ const MainNavigator = () => {
         <BottomTabs.Navigator initialRouteName={'My Shifts'}
                               screenOptions={{
                                   tabBarLabelStyle: [{
-                                      position: 'absolute',
+                                      position: 'relative',
                                       fontSize: FontSize.small,
                                       bottom: 20,
-
                                   }, Fonts.textBold],
                                   tabBarStyle: {
                                       flex: 1,
@@ -24,7 +23,6 @@ const MainNavigator = () => {
                                       backgroundColor: colors.card,
                                   },
                                   tabBarActiveTintColor: colors.primary,
-
                               }}
         >
             <BottomTabs.Screen name='My Shifts' component={MyShifts}
