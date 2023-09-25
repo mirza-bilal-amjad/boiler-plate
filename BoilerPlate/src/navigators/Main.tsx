@@ -7,21 +7,21 @@ import {AvailableShifts, MyShifts} from "@/screens";
 const BottomTabs = createBottomTabNavigator();
 
 const MainNavigator = () => {
-    const {NavigationTheme, FontSize} = useTheme();
+    const {NavigationTheme, FontSize, Fonts} = useTheme();
     const {colors}: string = NavigationTheme;
     return (
         <BottomTabs.Navigator initialRouteName={'My Shifts'}
                               screenOptions={{
-                                  tabBarLabelStyle: {
+                                  tabBarLabelStyle: [{
                                       position: 'absolute',
                                       fontSize: FontSize.small,
                                       bottom: 20,
-                                      fontWeight: '900',
-                                  },
+
+                                  }, Fonts.textBold],
                                   tabBarStyle: {
                                       flex: 1,
                                       maxHeight: 60,
-                                      backgroundColor: colors.background,
+                                      backgroundColor: colors.card,
                                   },
                                   tabBarActiveTintColor: colors.primary,
 
@@ -38,6 +38,7 @@ const MainNavigator = () => {
                                    headerStyle: {
                                        height: 70,
                                        borderBottomWidth: 1,
+                                       backgroundColor: colors.background
                                    }
                                }}/>
             <BottomTabs.Screen name='Available Shifts' component={AvailableShifts}

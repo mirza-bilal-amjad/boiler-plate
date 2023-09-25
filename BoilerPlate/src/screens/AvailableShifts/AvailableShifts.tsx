@@ -14,10 +14,12 @@ import {convertTime} from "@/../utils/method";
 import {useTheme} from "@/hooks";
 import {addToShifts, setBookedTrue} from "@/store/availableShifts";
 import {addToMyShifts} from "@/store/myShifts";
+import * as FS from "fs";
 
 const AvailableShifts = () => {
-    const {NavigationTheme, FontSize, Colors} = useTheme();
+    const {NavigationTheme, FontSize, Colors, Gutters, Layout, Fonts} = useTheme();
     const {colors}: string = NavigationTheme;
+
 
     const [helsinkiShifts, setHelsinkiShifts] = useState([]);
     const [tampereShifts, setTampereShifts] = useState([]);
@@ -26,17 +28,12 @@ const AvailableShifts = () => {
 
     const avShifts = useSelector((state: any) => state.availableShiftsReducer);
     const myShifts = useSelector((state: any) => state.myShiftsReducer);
-    const darkMode = useSelector((state: any) => state.theme.theme);
-
-    // sort by date
-    // const sortedShifts = avShifts.sort((a: any, b: any) => a.startTime - b.startTime);
-    // console.log('sortedShifts', sortedShifts)
-
     const [menuName, setMenuName] = useState<any>('Helsinki');
     const [area, setArea] = useState([]);
     //fetch current date
     const dispatch = useDispatch();
 
+    console.log(Fonts)
 
     const formatDate = (date: any) => {
         const today = new Date();
@@ -152,49 +149,38 @@ const AvailableShifts = () => {
                 style={[{
                     borderTopWidth: index === 0 ? 0.2 : 0,
                     borderBottomWidth: index === section.data.length - 1 ? 0.2 : 0,
-                }, styles.sectionListCard]}
+                }, Gutters["smallHPadding"], Gutters["tinyVPadding"], Layout.rowHCenter, Layout.scrollSpaceBetween /*styles.sectionListCard*/]}
             >
-                <View style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
+                <View style={[{
                     width: 100,
-
-                }}>
-                    <Text style={{
+                }, Layout.row, Layout.justifyContentBetween]}>
+                    <Text style={[{
                         color: Colors.bookedText,
-                        fontSize: 18,
+                        fontSize: FontSize.small,
                         fontWeight: '400'
-                    }}>{convertTime(item.startTime)}</Text>
+                    },]}>{convertTime(item.startTime)}</Text>
                     <Text style={{
                         color: Colors.bookedText,
-                        fontSize: 18,
+                        fontSize: FontSize.small,
                     }}
                     >-</Text>
                     <Text style={{
                         color: Colors.bookedText,
-                        fontSize: 18,
+                        fontSize: FontSize.small,
                         fontWeight: '400'
                     }}>{convertTime(item.endTime)}</Text>
                 </View>
 
 
-                <View style={{
-                    width: 200,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                }}>
-                    <Text style={{
+                <View style={[Layout.row, Layout.alignItemsCenter, Layout.justifyContentBetween]}>
+                    <Text style={[{
                         color: item.booked ? Colors.bookedText : overlapFlag ? Colors.error : Colors.primaryInActive,
-                        fontSize: 16,
-                        fontWeight: '500'
-                    }}>{item.booked ? 'Booked' : overlapFlag ? 'Overlapped' : ''}</Text>
+                        fontSize: FontSize.tiny,
+                    }, Fonts.textBold, Gutters['smallHPadding']]}>{item.booked ? 'Booked' : overlapFlag ? 'Overlapped' : ''}</Text>
                     <TouchableOpacity
                         style={[{
-
                             borderColor: item.booked || overlapFlag ? Colors.primaryInActive : Colors.success,
-
-                        }, styles.bookCancelButton]}
+                        }, styles.bookCancelButton, Layout.justifyContentCenter, Gutters['tinyVPadding'], Gutters['smallHPadding']]}
                         disabled={!!item.booked || overlapFlag}
                         activeOpacity={item.booked ? 1 : .8}
                         onPress={() => {
@@ -209,13 +195,12 @@ const AvailableShifts = () => {
                             isLoading && !item.booked ?
                                 <ActivityIndicator size={'small'} color={Colors.success}/> :
                                 <Text
-                                    style={{
+                                    style={[{
                                         color: item.booked ? Colors.primaryInActive : overlapFlag ? Colors.primaryInActive : Colors.success,
                                         // color: 'black',
                                         textAlign: 'center',
-                                        fontSize: 18,
-                                        fontWeight: 'bold'
-                                    }}>{'Book'}</Text>
+                                        fontSize: FontSize.small,
+                                    }, Fonts.textBold]}>{'Book'}</Text>
                         }
                     </TouchableOpacity>
                 </View>
@@ -226,17 +211,11 @@ const AvailableShifts = () => {
     return (
         <View style={{flex: 1, backgroundColor: Colors.background}}>
 
-            <StatusBar
-                backgroundColor={Colors.background}
-                barStyle={'light-content'}
-                showHideTransition={'none'}
-            />
 
             <View
                 style={{
                     height: 70,
                     backgroundColor: Colors.background,
-
                 }}
             >
                 <FlatList
@@ -249,28 +228,22 @@ const AvailableShifts = () => {
                                 setMenuName(item.area);
                             }}
                         >
-                            <Text style={{
-                                padding: 20,
+                            <Text style={[{
                                 borderRadius: 20,
                                 color: item.area === menuName
                                     ? Colors.primary
                                     : Colors.primaryInActive,
-                                fontSize: 16,
-                                fontWeight: 'bold'
-                            }}
+                                fontSize: FontSize.tiny,
+                            }, Fonts.textBold, Gutters['smallPadding']]}
                             >{item.area}{` (${item.area === 'Helsinki' ? helsinkiShifts.length : item.area === 'Turku' ? turkuShifts.length : item.area === 'Tampere' ? tampereShifts.length : null})`}</Text>
                         </TouchableOpacity>
 
                     )}
                     // style={{width: "100%"}}
-                    contentContainerStyle={{
-                        flexDirection: "row",
+                    contentContainerStyle={[{
                         height: 70,
                         flexShrink: 1,
-                        paddingHorizontal: 10,
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                    }}
+                    }, Layout.row, Layout.alignItemsCenter, Layout.justifyContentBetween, Gutters['tinyHPadding']]}
                 />
                 <Text style={{
                     borderBottomWidth: .2,
@@ -279,7 +252,7 @@ const AvailableShifts = () => {
             </View>
             {helsinkiShifts.length === 0 && tampereShifts.length === 0 && turkuShifts.length === 0 ?
                 <ActivityIndicator size={'large'} color={colors.black}
-                                   style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                   style={[Layout.center, Layout.fill]}>
 
                 </ActivityIndicator> :
 
@@ -293,14 +266,12 @@ const AvailableShifts = () => {
                     }}/>}
                     renderItem={SectionListItem}
                     renderSectionHeader={({section: {title}}) => (
-                        <Text style={{
-                            paddingHorizontal: 20,
+                        <Text style={[{
                             paddingVertical: 15,
-                            fontSize: 15,
-                            fontWeight: 'bold',
+                            fontSize: FontSize.tiny,
                             color: Colors.bookedText,
-                            backgroundColor: colors.textGray800
-                        }}>
+                            backgroundColor: colors.card
+                        }, Gutters['smallHPadding'], Fonts.textBold]}>
                             {title}
                         </Text>
                     )}
@@ -310,21 +281,14 @@ const AvailableShifts = () => {
 }
 export default AvailableShifts
 const styles = StyleSheet.create({
-    sectionListCard: {
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center"
-    },
+
     bookCancelButton: {
         borderRadius: 30,
         borderWidth: .5,
-        paddingHorizontal: 25,
-        paddingVertical: 9,
+        // paddingHorizontal: 25,
+        // paddingVertical: 9,
         width: 110,
         height: 50,
-        justifyContent: 'center',
     }
 
 });

@@ -23,7 +23,7 @@ const ApplicationNavigator = () => {
     return (
         <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
             <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} animated={false}
-                       backgroundColor={darkMode ? colors.background : colors.card}
+                       backgroundColor={colors.background}
             />
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="Startup" component={Startup}/>

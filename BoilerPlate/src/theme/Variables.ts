@@ -31,7 +31,7 @@ export const Colors = {
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
     primary: Colors.primary,
-    background: '#EFEFEF',
+    background: '#ffffff',
     card: '#EFEFEF',
 };
 
@@ -39,8 +39,8 @@ export const NavigationColors: Partial<ThemeNavigationColors> = {
  * FontSize
  */
 export const FontSize = {
-    tiny: 14,
-    small: 16,
+    tiny: 16,
+    small: 18,
     regular: 20,
     large: 40,
 };

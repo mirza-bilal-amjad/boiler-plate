@@ -11,8 +11,9 @@ import {Colors} from "@/theme/Variables";
 const MyShifts = () => {
     const [sectionShifts, setSectionShifts] = useState<any>([])
     const dispatch = useDispatch();
-    const {Colors, FontSize, NavigationTheme} = useTheme();
+    const {Colors, FontSize, NavigationTheme, Layout, Gutters, Fonts} = useTheme();
 
+    const {colors} = NavigationTheme;
     const myShifts = useSelector((state: any) => state.myShiftsReducer)
     const formatDate = (date: any) => {
         const today = new Date();
@@ -52,9 +53,9 @@ const MyShifts = () => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            {myShifts.length === 0 ? <View style={{flex: 1, justifyContent: "center", alignItems: 'center'}}>
+            {myShifts.length === 0 ? <View style={[Layout.fill, Layout.center]}>
                     <Text
-                        style={{justifyContent: "center", color: Colors.primary}}
+                        style={[{color: Colors.primary}, Layout.justifyContentCenter]}
                     >No booked shifts...</Text></View> :
                 <SectionList
                     sections={sectionShifts}
@@ -69,40 +70,33 @@ const MyShifts = () => {
                             style={[{
                                 borderTopWidth: index === 0 ? 0.2 : 0,
                                 borderBottomWidth: index === section.data.length - 1 ? 0.2 : 0,
-                            }, styles.sectionCard]}
+                            }, styles.sectionCard, Gutters['smallHPadding'], Layout.row, Layout.alignItemsCenter, Layout.scrollSpaceBetween]}
                             activeOpacity={0.8}
                         >
                             <View>
                                 <View style={styles.startTimeEndTime}>
-                                    <Text style={{
+                                    <Text style={[{
                                         color: Colors.bookedText,
-                                        fontSize: 18,
-                                        fontWeight: '400'
-                                    }}>{convertTime(item.startTime)}</Text>
+                                        fontSize: FontSize.small,
+                                    }, Fonts.textBold]}>{convertTime(item.startTime)}</Text>
                                     <Text style={{
                                         color: 'black',
                                         fontSize: 18,
                                     }}>-</Text>
-                                    <Text style={{
+                                    <Text style={[{
+                                        fontSize: FontSize.small,
                                         color: Colors.bookedText,
-                                        fontSize: 18,
-                                        fontWeight: '400'
-                                    }}>{convertTime(item.endTime)}</Text>
+                                    }, Fonts.textBold]}>{convertTime(item.endTime)}</Text>
                                 </View>
                                 <Text
-                                    style={{
+                                    style={[{
                                         color: Colors.primaryInActive,
                                         fontSize: 16,
-                                        fontWeight: '500'
-                                    }}
+                                    }, Fonts.textBold]}
                                 >{item.area}</Text>
                             </View>
 
-                            <View style={{
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                                alignItems: "center"
-                            }}>
+                            <View style={[Layout.row, Layout.alignItemsCenter, Layout.justifyContentBetween]}>
                                 <TouchableOpacity
                                     style={styles.cancelButton}
                                     activeOpacity={.5}
@@ -112,36 +106,31 @@ const MyShifts = () => {
                                     }}
                                 >
                                     <Text
-                                        style={{
+                                        style={[{
                                             color: Colors.error,
-                                            fontSize: 18,
-                                            fontWeight: 'bold'
-                                        }}>Cancel</Text>
+                                            fontSize: FontSize.small,
+                                        }, Fonts.textBold]}>Cancel</Text>
                                 </TouchableOpacity>
                             </View>
                         </TouchableOpacity>
                     )}
                     renderSectionHeader={({section: {title}}) => (
-                        <View style={{
-                            flexDirection: 'row',
-                            backgroundColor: Colors.grey,
-                            paddingHorizontal: 18,
+                        <View style={[{
+                            backgroundColor: colors.card,
                             paddingVertical: 15,
-                        }}>
-                            <Text style={{
-                                fontSize: 15,
+                        }, Layout.row, Gutters['smallHPadding']]}>
+                            <Text style={[{
+                                fontSize: FontSize.tiny,
                                 paddingHorizontal: 5,
-                                fontWeight: 'bold',
+
                                 color: Colors.bookedText,
-                            }}>
+                            }, Fonts.textBold]}>
                                 {title}
                             </Text>
-                            <Text style={{
-                                fontSize: 15,
-                                paddingHorizontal: 10,
-                                fontWeight: '400',
+                            <Text style={[{
+                                fontSize: FontSize.tiny,
                                 color: Colors.primaryInActive,
-                            }}>
+                            }, Gutters['tinyHPadding'], Fonts.textBold]}>
                                 {
                                     myShifts.filter((item: any) => formatDate(new Date(item.startTime)) === title).length
                                 }
@@ -157,19 +146,13 @@ const MyShifts = () => {
             }
         </SafeAreaView>
     );
-}
+};
 export default MyShifts
 
 const styles = StyleSheet.create({
     mainContainer: {flex: 1,},
     sectionCard: {
-
-        paddingHorizontal: 20,
         paddingVertical: 15,
-        // marginHorizontal: 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center"
     },
     startTimeEndTime: {
         flexDirection: 'row',
@@ -180,7 +163,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         borderWidth: .5,
         paddingHorizontal: 25,
-        paddingVertical: 9,
+        paddingVertical: 12,
         borderColor: Colors.error,
     }
 })
