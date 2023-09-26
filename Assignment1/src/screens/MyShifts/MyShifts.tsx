@@ -16,6 +16,7 @@ const MyShifts = () => {
 
     const {colors} = NavigationTheme;
     const myShifts = useSelector((state: any) => state.myShiftsReducer)
+    const isLoggedIn = useSelector((state: any) => state.logInReducer.loggedIn)
     const formatDate = (date: any) => {
         const today = new Date();
         const tomorrow = new Date(today);
@@ -148,16 +149,18 @@ const MyShifts = () => {
                     )}
                 />
             }
-            {myShifts.length > 0 && <View style={[Layout.row, Layout.justifyContentCenter, Layout.alignItemsCenter]}>
-                <TouchableOpacity
-                    style={[styles.cancelButton, {margin: 10}]}
-                    onPress={() => dispatch(setLogIn(false))}
-                >
-                    <Text style={[Fonts.textBold, {color: Colors.error, fontSize: FontSize.small}, Fonts.textCenter]}>SET
-                        LOGGED FALSE
-                    </Text>
-                </TouchableOpacity>
-            </View>
+            {myShifts.length > 0 && isLoggedIn &&
+                <View style={[Layout.row, Layout.justifyContentCenter, Layout.alignItemsCenter]}>
+                    <TouchableOpacity
+                        style={[styles.cancelButton, {margin: 10}]}
+                        onPress={() => dispatch(setLogIn(false))}
+                    >
+                        <Text
+                            style={[Fonts.textBold, {color: Colors.error, fontSize: FontSize.small}, Fonts.textCenter]}>SET
+                            LOGGED FALSE
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             }
         </SafeAreaView>
     );

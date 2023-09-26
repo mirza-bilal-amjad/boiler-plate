@@ -128,6 +128,8 @@ const AvailableShifts = () => {
             storeArea.push({area: key})
         }
 
+        console.log(storeArea)
+
         setArea(storeArea);
         // @ts-ignore
     }, [avShifts]);
@@ -209,17 +211,16 @@ const AvailableShifts = () => {
 
     // @ts-ignore
     return (
-        <View style={{flex: 1, backgroundColor: Colors.background}}>
-
-
+        <View style={{flex: 1, backgroundColor: colors.background}}>
             <View
                 style={{
                     height: 70,
-                    backgroundColor: Colors.background,
+                    backgroundColor: colors.background,
                 }}
             >
                 <FlatList
                     data={area}
+                    keyExtractor={(item, index) => item + index}
                     renderItem={({item}) => (
                         <TouchableOpacity
                             activeOpacity={.8}
