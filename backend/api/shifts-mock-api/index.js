@@ -41,7 +41,6 @@ const routes = [
     method: 'POST',
     path: '/{id}/book',
     handler: async ({ params }) => {
-      console.log('book shift', params.id)
       const shift = await db.shifts.get(params.id);
 
       if (!shift) {

@@ -28,6 +28,11 @@ export const Colors = {
     //ComponentColors
     circleButtonBackground: '#E1E1EF',
     circleButtonColor: '#44427D',
+    lottieKp1: '#979797',
+    lottieKp2: '#717171',
+    lottieKp3: '#474646',
+    lottieKp4: '#262626',
+    lottieKp5: '#1E1E1E',
 
 };
 

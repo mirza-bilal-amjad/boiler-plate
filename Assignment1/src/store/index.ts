@@ -5,15 +5,18 @@ import {
     persistStore,
 } from 'redux-persist';
 
+
 import theme from './theme';
 import {availableShiftsReducer} from "./availableShifts";
 import {myShiftsReducer} from "./myShifts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {logInReducer} from "./login";
 
 const reducers = combineReducers({
     theme,
     availableShiftsReducer,
     myShiftsReducer,
+    logInReducer
 });
 
 const persistConfig = {

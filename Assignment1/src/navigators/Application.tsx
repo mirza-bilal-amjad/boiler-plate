@@ -5,11 +5,12 @@ import {
     NavigationContainer,
     useNavigationContainerRef,
 } from '@react-navigation/native';
-import {Startup} from '../screens';
+import {OnBoardScreen, Startup} from '../screens';
 import {useTheme} from '../hooks';
 import MainNavigator from './Main';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {ApplicationStackParamList} from "../../@types/navigation";
+import onBoard from "../screens/OnBoard/onBoard";
 
 const Stack = createNativeStackNavigator<ApplicationStackParamList>();
 
@@ -26,7 +27,9 @@ const ApplicationNavigator = () => {
                        backgroundColor={colors.background}
             />
             <Stack.Navigator screenOptions={{headerShown: false}}>
+
                 <Stack.Screen name="Startup" component={Startup}/>
+                <Stack.Screen name={'OnBoardScreen'} component={OnBoardScreen}/>
                 <Stack.Screen name="Main" component={MainNavigator}/>
             </Stack.Navigator>
         </NavigationContainer>

@@ -9,6 +9,11 @@ export const Colors = {
     textGray200: '#BABABA',
     inputBackground: '#3a3a3a',
     circleButtonBackground: '#252732',
+    lottieKp1: '#a3c9ff',
+    lottieKp2: '#79b1ff',
+    lottieKp3: '#5797e8',
+    lottieKp4: '#1662cc',
+    lottieKp5: '#004FB4',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {

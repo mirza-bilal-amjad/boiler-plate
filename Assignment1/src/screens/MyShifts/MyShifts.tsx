@@ -7,6 +7,7 @@ import {cancelMyShifts} from "../../store/myShifts";
 import {cancelShiftsAndSetFalse} from "../../store/availableShifts";
 import {Colors} from "../../theme/Variables";
 import {bookShift, cancelShift} from "../../components/backend_server/fetchBackend";
+import {setLogIn} from "../../store/login";
 
 const MyShifts = () => {
     const [sectionShifts, setSectionShifts] = useState<any>([])
@@ -111,7 +112,10 @@ const MyShifts = () => {
                                             fontSize: FontSize.small,
                                         }, Fonts.textBold]}>Cancel</Text>
                                 </TouchableOpacity>
+
+
                             </View>
+
                         </TouchableOpacity>
                     )}
                     renderSectionHeader={({section: {title}}) => (
@@ -144,11 +148,17 @@ const MyShifts = () => {
                     )}
                 />
             }
-
-            <TouchableOpacity
-                style={styles.cancelButton}
-                onPress={() => bookShift('d76a9e35-2422-4bf7-9fd7-e7d7a9e444a9')}
-            ><Text>Candelabrum</Text></TouchableOpacity>
+            {myShifts.length > 0 && <View style={[Layout.row, Layout.justifyContentCenter, Layout.alignItemsCenter]}>
+                <TouchableOpacity
+                    style={[styles.cancelButton, {margin: 10}]}
+                    onPress={() => dispatch(setLogIn(false))}
+                >
+                    <Text style={[Fonts.textBold, {color: Colors.error, fontSize: FontSize.small}, Fonts.textCenter]}>SET
+                        LOGGED FALSE
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            }
         </SafeAreaView>
     );
 };
