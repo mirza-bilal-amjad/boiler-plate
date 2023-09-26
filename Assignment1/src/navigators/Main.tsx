@@ -16,7 +16,7 @@ const MainNavigator = () => {
                                   tabBarLabelStyle: [{
                                       position: 'relative',
                                       fontSize: FontSize.small,
-                                      bottom: 20,
+                                      bottom: 17,
                                   }, Fonts.textBold],
                                   tabBarStyle: {
                                       flex: 1,
@@ -30,10 +30,7 @@ const MainNavigator = () => {
                                options={{
                                    headerShown: true,
                                    headerTitleStyle: {fontWeight: '900', color: colors.primary},
-                                   tabBarIcon: () => (
-                                       <View style={{height: 0}}
-                                       ></View>
-                                   ),
+                                   tabBarIcon: () => <View style={{display: 'none'}}></View>,
                                    headerStyle: {
                                        height: 70,
                                        borderBottomWidth: 1,
@@ -43,10 +40,8 @@ const MainNavigator = () => {
             <BottomTabs.Screen name='Available Shifts' component={AvailableShifts}
                                options={{
                                    headerShown: false,
-                                   tabBarIcon: () => (
-                                       <View style={{height: 0}}
-                                       ></View>
-                                   )
+                                   tabBarIcon: () => <View style={{display: 'none'}}></View>
+
                                }}/>
         </BottomTabs.Navigator>
     );

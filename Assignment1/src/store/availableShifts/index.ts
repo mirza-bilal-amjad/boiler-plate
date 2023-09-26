@@ -14,6 +14,7 @@ const shiftSlice = createSlice({
             );
         },
         addToShifts: (state, action) => {
+
             if (state.some(item => item.id === action.payload.id)) {
                 return state;
             } else {
@@ -24,7 +25,8 @@ const shiftSlice = createSlice({
             }
         },
         cancelShiftsAndSetFalse: (state, action) => {
-            return state.map(shift =>
+            console.log(state, action);
+            return state.map((shift) =>
                 shift.id === action.payload.id
                     ? {...shift, booked: false}
                     : shift

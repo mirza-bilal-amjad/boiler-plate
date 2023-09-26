@@ -18,7 +18,8 @@ import {addToMyShifts} from "../../store/myShifts";
 
 const AvailableShifts = () => {
     const {NavigationTheme, FontSize, Colors, Gutters, Layout, Fonts} = useTheme();
-    const {colors}: string = NavigationTheme;
+    let colors: any;
+    ({colors} = NavigationTheme);
 
 
     const [helsinkiShifts, setHelsinkiShifts] = useState([]);
@@ -206,6 +207,7 @@ const AvailableShifts = () => {
         )
     }
 
+    // @ts-ignore
     return (
         <View style={{flex: 1, backgroundColor: Colors.background}}>
 
@@ -228,12 +230,12 @@ const AvailableShifts = () => {
                         >
                             <Text style={[{
                                 borderRadius: 20,
-                                color: item.area === menuName
+                                color: item['area'] === menuName
                                     ? Colors.primary
                                     : Colors.primaryInActive,
                                 fontSize: FontSize.tiny,
                             }, Fonts.textBold, Gutters['smallPadding']]}
-                            >{item.area}{` (${item.area === 'Helsinki' ? helsinkiShifts.length : item.area === 'Turku' ? turkuShifts.length : item.area === 'Tampere' ? tampereShifts.length : null})`}</Text>
+                            >{item['area']}{` (${item['area'] === 'Helsinki' ? helsinkiShifts.length : item['area'] === 'Turku' ? turkuShifts.length : item['area'] === 'Tampere' ? tampereShifts.length : null})`}</Text>
                         </TouchableOpacity>
 
                     )}

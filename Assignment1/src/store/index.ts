@@ -14,13 +14,11 @@ const reducers = combineReducers({
     theme,
     availableShiftsReducer,
     myShiftsReducer,
-    // [api.reducerPath]: api.reducer,
 });
 
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['theme'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
