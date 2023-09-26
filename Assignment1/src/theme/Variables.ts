@@ -5,7 +5,9 @@
  * That allows to change them more easily later on.
  */
 
-import {ThemeNavigationColors} from 'types/theme';
+
+
+import {ThemeNavigationColors} from "../../@types/theme";
 
 /**
  * Colors
