@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit';
 
 const initialState: object = [];
 
@@ -6,16 +6,16 @@ const shiftSlice = createSlice({
     name: 'shifts',
     initialState,
     reducers: {
-        setBookedTrue: (state, action) => {
-            return state.map(shift =>
+        setBookedTrue: (state: Draft<any>, action) => {
+            return state.map((shift: any) =>
                 shift.id === action.payload.id
                     ? {...shift, booked: true}
                     : shift
             );
         },
-        addToShifts: (state, action) => {
+        addToShifts: (state: Draft<any>, action: PayloadAction<any>) => {
 
-            if (state.some(item => item.id === action.payload.id)) {
+            if (state.some((item: any) => item.id === action.payload.id)) {
                 return state;
             } else {
                 let flag = action.payload.startTime > new Date().getTime();
@@ -24,9 +24,8 @@ const shiftSlice = createSlice({
                 }
             }
         },
-        cancelShiftsAndSetFalse: (state, action) => {
-            console.log(state, action);
-            return state.map((shift) =>
+        cancelShiftsAndSetFalse: (state: Draft<any>, action) => {
+            return state.map((shift: any) =>
                 shift.id === action.payload.id
                     ? {...shift, booked: false}
                     : shift

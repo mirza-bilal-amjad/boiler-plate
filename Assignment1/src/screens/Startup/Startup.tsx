@@ -12,7 +12,7 @@ const Startup = ({navigation}: ApplicationScreenProps) => {
         await new Promise(resolve =>
             setTimeout(() => {
                 resolve(true);
-            }, 2000),
+            }, 500),
         );
         // @ts-ignore
         await setDefaultTheme({theme: 'default', darkMode: null});

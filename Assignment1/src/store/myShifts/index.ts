@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 
 const initialState: object = [];
 
@@ -6,8 +6,8 @@ const slice = createSlice({
     name: 'myShifts',
     initialState,
     reducers: {
-        addToMyShifts: (state, action) => {
-            if (state.some(item => item.id === action.payload.id)) {
+        addToMyShifts: (state: Draft<any>, action: PayloadAction<any>) => {
+            if (state.some((item: any) => item.id === action.payload.id)) {
                 return state;
             } else {
                 let flag = action.payload.startTime > new Date().getTime();
@@ -16,8 +16,8 @@ const slice = createSlice({
                 }
             }
         },
-        cancelMyShifts: (state, action) => {
-            return state.filter(shift => shift.id !== action.payload.id);
+        cancelMyShifts: (state: Draft<any>, action: PayloadAction<any>) => {
+            return state.filter((shift: any) => shift.id !== action.payload.id);
         }
     }
 });

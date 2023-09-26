@@ -2,8 +2,6 @@ import {SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View} fro
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {convertTime} from "../../../utils/method";
-
-import {inspect} from "util";
 import {useTheme} from "../../hooks";
 import {cancelMyShifts} from "../../store/myShifts";
 import {cancelShiftsAndSetFalse} from "../../store/availableShifts";
@@ -33,7 +31,7 @@ const MyShifts = () => {
     }
 
     const returnShifts = () => {
-        const storeShifts = [];
+        const storeShifts: any = [];
 
         const MYSHIFTSS = myShifts.reduce((acc: any, curr: any) => {
             const date = formatDate(new Date(curr.startTime));
