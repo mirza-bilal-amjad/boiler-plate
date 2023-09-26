@@ -28,6 +28,7 @@ const MyShifts = () => {
         } else {
             // Format the date as you prefer (e.g., "DD/MM/YYYY")
             return date.toDateString();
+
         }
     }
 
