@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import themes from '../../theme/themes';
 
+
 const slice = createSlice({
     name: 'theme',
     initialState: {theme: 'default', darkMode: null} as ThemeState,
@@ -13,7 +14,7 @@ const slice = createSlice({
                 state.darkMode = darkMode;
             }
         },
-        setDefaultTheme: (state,) => {
+        setDefaultTheme: (state, {payload: {theme, darkMode}}: ThemePayload) => {
             if (!state.theme) {
                 if (typeof theme !== 'undefined') {
                     state.theme = theme;

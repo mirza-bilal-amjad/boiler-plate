@@ -12,7 +12,7 @@ const fetchShifts = async () => {
     }
 };
 
-const fetchShiftById = async ({id}: { id: any }) => {
+const fetchShiftById = async ({id}: { id: string }) => {
     try {
         const response = await Axios.get(`${API_BASE_URL}/shifts/${id}`);
         return response.data;
@@ -22,14 +22,10 @@ const fetchShiftById = async ({id}: { id: any }) => {
     }
 };
 
-const bookShift = async (id: any) => {
-    try {
-        const response = await Axios.post(`${API_BASE_URL}/${id}/book`);
-        return response.data;
-    } catch (error) {
-        console.error(`Error booking shift with id ${id}:`, error);
-        throw error;
-    }
+const bookShift = async (id: string) => {
+    console.log(id, 'id');
+    const response = await Axios.post(`${API_BASE_URL}/${id}/book`);
+    return response.data;
 };
 
 const cancelShift = async (id: any) => {

@@ -6,6 +6,7 @@ import {useTheme} from "../../hooks";
 import {cancelMyShifts} from "../../store/myShifts";
 import {cancelShiftsAndSetFalse} from "../../store/availableShifts";
 import {Colors} from "../../theme/Variables";
+import {bookShift, cancelShift} from "../../components/backend_server/fetchBackend";
 
 const MyShifts = () => {
     const [sectionShifts, setSectionShifts] = useState<any>([])
@@ -18,7 +19,6 @@ const MyShifts = () => {
         const today = new Date();
         const tomorrow = new Date(today);
         tomorrow.setDate(today.getDate() + 1);
-
         if (date.toDateString() === today.toDateString()) {
             return 'Today';
         } else if (date.toDateString() === tomorrow.toDateString()) {
@@ -144,6 +144,11 @@ const MyShifts = () => {
                     )}
                 />
             }
+
+            <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={() => bookShift('d76a9e35-2422-4bf7-9fd7-e7d7a9e444a9')}
+            ><Text>Candelabrum</Text></TouchableOpacity>
         </SafeAreaView>
     );
 };
